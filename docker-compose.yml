@@ -4,11 +4,11 @@ services:
     build: .
     environment:
       - PORT=3000
+    depends_on:
+      - mongo
+
   mongo:
     image: mongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=dangnh
-      - MONGO_INITDB_ROOT_PASSWORD=dangnhpass
     volumes:
       - mongo-db:/data/db
 

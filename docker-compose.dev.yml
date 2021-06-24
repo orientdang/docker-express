@@ -3,13 +3,20 @@ services:
   node-app:
     build:
       context: .
-      args:  
+      args:
         NODE_ENV: development
-    ports: 
+    ports:
       - "3000:3000"
     volumes:
       - ./:/app:ro
       - /app/node_modules
     command: npm run dev
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
+      - MONGO_USER=dangnh
+      - MONGO_PASSWORD=dangnhpass
+
+  mongo:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=dangnh
+      - MONGO_INITDB_ROOT_PASSWORD=dangnhpass

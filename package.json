@@ -1,20 +1,21 @@
 {
-  "name": "docker-express",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^5.12.14"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+	"name": "docker-express",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js",
+		"dev": "nodemon index.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1",
+		"mongoose": "^5.12.14"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.7",
+		"prettier": "2.3.1"
+	}
 }
