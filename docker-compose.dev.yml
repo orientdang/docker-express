@@ -15,8 +15,10 @@ services:
             - NODE_ENV=development
             - MONGO_USER=dangnh
             - MONGO_PASSWORD=dangnhpass
+            - SESSION_SECRET=secret
 
     mongo:
         environment:
             - MONGO_INITDB_ROOT_USERNAME=dangnh
             - MONGO_INITDB_ROOT_PASSWORD=dangnhpass
+

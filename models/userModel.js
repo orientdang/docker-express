@@ -5,6 +5,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, 'User must have a User name'],
         unique: true,
+				index: true
     },
     password: {
         type: String,
@@ -13,4 +14,6 @@ const userSchema = mongoose.Schema({
 })
 
 const User = mongoose.model('User', userSchema)
+User.createIndexes()
+
 module.exports = User
