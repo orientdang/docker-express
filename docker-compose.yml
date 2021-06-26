@@ -13,7 +13,12 @@ services:
             - mongo-db:/data/db
 
     redis:
-      image: redis
+        image: redis
+
+    nginx:
+        image: nginx:stable-alpine
+        volumes:
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
 
 volumes:
     mongo-db:

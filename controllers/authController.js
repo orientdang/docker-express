@@ -2,7 +2,7 @@ const User = require('../models/userModel.js')
 const bcrypt = require('bcryptjs')
 const { handleError } = require('../uti/helper.js')
 
-exports.signUp = async (req, res, next) => {
+exports.signUp = async (req, res) => {
     try {
         const { username, password } = req.body
         const hashPassword = await bcrypt.hash(password, 12)
@@ -10,6 +10,7 @@ exports.signUp = async (req, res, next) => {
             username,
             password: hashPassword,
         })
+        req.session.user = newUser
         res.status(200).json({
             status: 'success',
             data: {
@@ -22,13 +23,11 @@ exports.signUp = async (req, res, next) => {
     }
 }
 
-exports.logIn = async (req, res, next) => {
+exports.logIn = async (req, res) => {
     try {
         const { username, password } = req.body
 
         const user = await User.findOne({ username })
-
-        console.log(user)
         if (!user) {
             return res.status(400).json({
                 status: 'fail',
@@ -37,6 +36,7 @@ exports.logIn = async (req, res, next) => {
         }
         const isCorrect = await bcrypt.compare(password, user.password)
         if (isCorrect) {
+            req.session.user = user
             res.status(200).json({
                 status: 'success',
             })
