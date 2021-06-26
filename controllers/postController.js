@@ -1,10 +1,10 @@
-const Post = require('../models/postsModel')
+const Post = require("../models/postsModel")
 
 exports.getAllPosts = async (req, res, next) => {
     try {
         const posts = await Post.find()
         res.status(200).json({
-            status: 'success',
+            status: "success",
             result: posts.length,
             data: {
                 posts,
@@ -12,7 +12,7 @@ exports.getAllPosts = async (req, res, next) => {
         })
     } catch (error) {
         res.status(400).json({
-            status: 'fail',
+            status: "fail",
         })
     }
 }
@@ -21,14 +21,14 @@ exports.getOnePost = async (req, res, next) => {
     try {
         const post = await Post.findById(req.params.id)
         res.status(200).json({
-            status: 'success',
+            status: "success",
             data: {
                 post,
             },
         })
     } catch (error) {
         res.status(400).json({
-            status: 'fail',
+            status: "fail",
         })
     }
 }
@@ -37,14 +37,14 @@ exports.createPost = async (req, res, next) => {
     try {
         const post = await Post.create(req.body)
         res.status(200).json({
-            status: 'success',
+            status: "success",
             data: {
                 post,
             },
         })
     } catch (error) {
         res.status(400).json({
-            status: 'fail',
+            status: "fail",
         })
     }
 }
@@ -61,7 +61,7 @@ exports.updatePost = async (req, res, next) => {
             options
         )
         res.status(200).json({
-            status: 'success',
+            status: "success",
             data: {
                 post,
             },
@@ -69,7 +69,7 @@ exports.updatePost = async (req, res, next) => {
     } catch (error) {
         console.log(error)
         res.status(400).json({
-            status: 'fail',
+            status: "fail",
         })
     }
 }
@@ -77,11 +77,11 @@ exports.deletePost = async (req, res, next) => {
     try {
         const post = await Post.findByIdAndDelete(req.params.id)
         res.status(200).json({
-            status: 'success',
+            status: "success",
         })
     } catch (error) {
         res.status(400).json({
-            status: 'fail',
+            status: "fail",
         })
     }
 }

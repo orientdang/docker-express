@@ -1,7 +1,7 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const session = require('express-session')
-const redis = require('redis')
+const express = require("express")
+const mongoose = require("mongoose")
+const session = require("express-session")
+const redis = require("redis")
 const {
     MONGO_IP,
     MONGO_PORT,
@@ -10,21 +10,21 @@ const {
     REDIS_URL,
     REDIS_PORT,
     SESSION_SECRET,
-} = require('./config/config.js')
-const cors = require('cors')
+} = require("./config/config.js")
+const cors = require("cors")
 
 const app = express()
-app.enable('trust proxy')
+app.enable("trust proxy")
 const port = process.env.PORT || 3000
 
-let RedisStore = require('connect-redis')(session)
+let RedisStore = require("connect-redis")(session)
 let redisClient = redis.createClient({
     host: REDIS_URL,
     port: REDIS_PORT,
 })
 
-const postRouter = require('./routes/postRoute')
-const userRouter = require('./routes/userRoute')
+const postRouter = require("./routes/postRoute")
+const userRouter = require("./routes/userRoute")
 
 // connect to mongo
 const MONGO_URL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`
@@ -43,7 +43,7 @@ const MONGO_OPTION = {
 const connectWithRetries = () => {
     mongoose
         .connect(MONGO_URL, MONGO_OPTION)
-        .then(() => console.log('Connect to DB successfull'))
+        .then(() => console.log("Connect to DB successfull"))
         .catch((e) => {
             console.log(e)
             setTimeout(() => {
@@ -54,7 +54,7 @@ const connectWithRetries = () => {
 connectWithRetries()
 
 // MIDDLEWARE
-app.use(cors)
+app.use(cors({}))
 app.use(express.json())
 app.use(
     session({
@@ -70,11 +70,11 @@ app.use(
     })
 )
 
-app.use('/api/v1/posts', postRouter)
-app.use('/api/v1/users', userRouter)
+app.use("/api/v1/posts", postRouter)
+app.use("/api/v1/users", userRouter)
 // serve requets
-app.get('/', (req, res) => {
-    res.send('Hi Daniel change!!!')
+app.get("/", (req, res) => {
+    res.send("Hi Daniel change!!!")
 })
 
 app.listen(port, () => {

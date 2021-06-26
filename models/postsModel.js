@@ -1,15 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 const postSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: [true, 'Post must have models'],
+        required: [true, "Post must have models"],
     },
     body: {
         type: String,
-        required: [true, 'Post must have body'],
+        required: [true, "Post must have body"],
     },
 })
 
-const Post = mongoose.model('Post', postSchema)
+const Post = mongoose.model("Post", postSchema)
 module.exports = Post
