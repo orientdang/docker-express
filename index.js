@@ -11,6 +11,7 @@ const {
     REDIS_PORT,
     SESSION_SECRET,
 } = require('./config/config.js')
+const cors = require('cors')
 
 const app = express()
 app.enable('trust proxy')
@@ -53,6 +54,7 @@ const connectWithRetries = () => {
 connectWithRetries()
 
 // MIDDLEWARE
+app.use(cors)
 app.use(express.json())
 app.use(
     session({
