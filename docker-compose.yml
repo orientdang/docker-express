@@ -9,7 +9,7 @@ services:
 
     node-app:
         build: .
-        image: sloppynetworks/node-app
+        image: ziga0197/node-app
         environment:
             - PORT=3000
         depends_on:
