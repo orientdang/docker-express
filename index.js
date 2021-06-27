@@ -73,8 +73,8 @@ app.use(
 app.use("/api/v1/posts", postRouter)
 app.use("/api/v1/users", userRouter)
 // serve requets
-app.get("/", (req, res) => {
-    res.send("Hi Daniel change!!!")
+app.get("/api/v1/healthcheck", (req, res) => {
+    res.send("Hi 3")
 })
 
 app.listen(port, () => {
